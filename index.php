@@ -39,7 +39,7 @@ if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slas
 }
 
 $snacks = getenv("SNACKS");
-echo $snacks
+echo $snacks;
 switch ($text) {
     case "status":
         if($snacks == $In)
