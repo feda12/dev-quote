@@ -40,8 +40,18 @@ if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slas
   echo $msg;
 }
 
-putenv("SNACK=Hello");
-$snacks = $_SESSION["SNACKS"];
+$snacks = $Unknown;
+
+$file = 'snack.txt';
+if (!file_exists($file)) {
+        touch($file);
+}
+$handle = fopen($file, "r+");
+if(flock($handle, LOCK_EX)) {
+    $size = filesize($file);
+    $snacks = $size === 0 ? 0 : fread($handle, $size);
+    flock($handle, LOCK_UN);
+}
 
 if($text == "status")
 {
@@ -69,8 +79,12 @@ if($text == "status")
         $status = $Out;
         $reply = "Argh. No more snacks";
     }
-
-    $_SESSION["SNACKS"] = $status;
+    if(flock($handle, LOCK_EX)) {
+        ftruncate($handle, 0);
+        rewind($handle);
+        fwrite($handle, $status);
+        flock($handle, LOCK_UN);
+    }
 }
 
 # Send the reply back to the user.
