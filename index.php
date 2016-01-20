@@ -58,15 +58,18 @@ switch ($text) {
         }
         break;
     case "in":
-        putenv("SNACKS=$SnackStatus::In");
+        $status = $SnackStatus::In
+        putenv("SNACKS=$status");
         $reply = "Fresh snacks delivery!";
         break;
     case "low":
-        putenv("SNACKS=$SnackStatus::Low");
+        $status = $SnackStatus::Low
+        putenv("SNACKS=$status");
         $reply = "Holy cow! Someone shoud call Karie!!";
         break;
     case "out":
-        putenv("SNACKS=$SnackStatus::Out");
+        $status = $SnackStatus::Out
+        putenv("SNACKS=$status");
         $reply = "Argh. No more snacks";
         break;
     default:
