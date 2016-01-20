@@ -22,9 +22,9 @@ USAGE
 
 */
 
-const $Out = 1;
-const $Low = 2;
-const $In = 3;
+$Out = 1;
+$Low = 2;
+$In = 3;
 
 # Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
