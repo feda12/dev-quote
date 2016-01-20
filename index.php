@@ -42,7 +42,7 @@ if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slas
 
 $snacks = $_SESSION["SNACKS"];
 
-if("status" == "status")
+if($text == "status")
 {
         if($snacks == $In)
         {
