@@ -38,8 +38,7 @@ if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slas
   echo $msg;
 }
 
-$snacks = getenv("SNACKS");
-echo $snacks;
+$snacks = apache_getenv("SNACKS");
 
 switch ($text) {
     case "status":
@@ -55,15 +54,15 @@ switch ($text) {
         }
         break;
     case "in":
-        putenv("SNACKS=$In");
+        apache_setenv("SNACKS", $In);
         $reply = "Fresh snacks delivery!";
         break;
     case "low":
-        putenv("SNACKS=$Low");
+        apache_setenv("SNACKS", $Low);
         $reply = "Holy cow! Someone shoud call Karie!!";
         break;
     case "out":
-        putenv("SNACKS=$Out");
+        apache_setenv("SNACKS", $Out);
         $reply = "Argh. No more snacks";
         break;
     default:
