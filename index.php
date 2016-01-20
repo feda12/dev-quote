@@ -22,9 +22,9 @@ USAGE
 
 */
 
-const Out = 0;
-const Low = 1;
-const In = 2;
+const $Out = 1;
+const $Low = 2;
+const $In = 3;
 
 # Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
@@ -40,6 +40,7 @@ if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slas
 
 $snacks = getenv("SNACKS");
 echo $snacks;
+
 switch ($text) {
     case "status":
         if($snacks == $In)
