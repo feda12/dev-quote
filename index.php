@@ -48,13 +48,13 @@ switch ($text) {
     case "status":
         if($snacks == SnackStatus::In)
         {
-            $reply = "";
+            $reply = "Yay! No need to panic, snacks are overflowing!";
         } else if ($snacks == SnackStatus::Low) {
-            $reply = "";
+            $reply = "We are running low... let Karie know before it's too late..";
         } else if ($snacks == SnackStatus::Out) {
-            $reply = "";
+            $reply = "We're out... Ship is sinking..";
         } else {
-            $reply = "";
+            $reply = "404: Snacks not found";
         }
         break;
     case "in":
@@ -63,7 +63,7 @@ switch ($text) {
         break;
     case "low":
         putenv("SNACKS=$SnackStatus::Low");
-        $reply = "Holy cow! Someone calls Karie!!";
+        $reply = "Holy cow! Someone shoud call Karie!!";
         break;
     case "out":
         putenv("SNACKS=$SnackStatus::Out");
