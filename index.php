@@ -21,7 +21,9 @@ USAGE
 * If you do, enter a short description and usage hint.
 
 */
+session_start();
 
+$Unknown = 0;
 $Out = 1;
 $Low = 2;
 $In = 3;
@@ -38,10 +40,10 @@ if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slas
   echo $msg;
 }
 
-$snacks = apache_getenv("SNACKS");
+$snacks = $_SESSION["SNACKS"];
 
-switch ($text) {
-    case "status":
+if("status" == "status")
+{
         if($snacks == $In)
         {
             $reply = "Yay! No need to panic, snacks are overflowing!";
@@ -52,22 +54,22 @@ switch ($text) {
         } else {
             $reply = "404: Snacks not found";
         }
-        break;
-    case "in":
-        apache_setenv("SNACKS", $In);
+} else {
+    $status = $Unknown;
+    $reply = "404: Snacks not found";
+    if($text == "in")
+    {
+        $status = $In;
         $reply = "Fresh snacks delivery!";
-        break;
-    case "low":
-        apache_setenv("SNACKS", $Low);
+    } else if ($text == "low") {
+        $status = $Low;
         $reply = "Holy cow! Someone shoud call Karie!!";
-        break;
-    case "out":
-        apache_setenv("SNACKS", $Out);
+    } else if ($text == "out") {
+        $status = $Out;
         $reply = "Argh. No more snacks";
-        break;
-    default:
-        $reply = "404: Snacks not found";
-        break;
+    }
+
+    $_SESSION["SNACKS"] = $status;
 }
 
 # Send the reply back to the user.
