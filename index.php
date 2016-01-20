@@ -40,6 +40,7 @@ if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slas
   echo $msg;
 }
 
+putenv("SNACK=Hello");
 $snacks = $_SESSION["SNACKS"];
 
 if($text == "status")
