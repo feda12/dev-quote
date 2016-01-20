@@ -22,14 +22,12 @@ USAGE
 
 */
 
-
-abstract class SnackStatus
+abstract class Snack
 {
-    const In = 10;
     const Out = 0;
     const Low = 1;
+    const In = 2;
 }
-
 # Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
 $text = $_POST['text'];
@@ -46,12 +44,12 @@ $snacks = getenv("SNACKS");
 
 switch ($text) {
     case "status":
-        if($snacks == SnackStatus::In)
+        if($snacks == $SnackStatus::In)
         {
             $reply = "Yay! No need to panic, snacks are overflowing!";
-        } else if ($snacks == SnackStatus::Low) {
+        } else if ($snacks == $SnackStatus::Low) {
             $reply = "We are running low... let Karie know before it's too late..";
-        } else if ($snacks == SnackStatus::Out) {
+        } else if ($snacks == $SnackStatus::Out) {
             $reply = "We're out... Ship is sinking..";
         } else {
             $reply = "404: Snacks not found";
