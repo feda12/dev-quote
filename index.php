@@ -22,12 +22,10 @@ USAGE
 
 */
 
-abstract class Snack
-{
-    const Out = 0;
-    const Low = 1;
-    const In = 2;
-}
+const Out = 0;
+const Low = 1;
+const In = 2;
+
 # Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
 $text = $_POST['text'];
@@ -44,30 +42,27 @@ $snacks = getenv("SNACKS");
 
 switch ($text) {
     case "status":
-        if($snacks == $SnackStatus::In)
+        if($snacks == $In)
         {
             $reply = "Yay! No need to panic, snacks are overflowing!";
-        } else if ($snacks == $SnackStatus::Low) {
+        } else if ($snacks == $Low) {
             $reply = "We are running low... let Karie know before it's too late..";
-        } else if ($snacks == $SnackStatus::Out) {
+        } else if ($snacks == $Out) {
             $reply = "We're out... Ship is sinking..";
         } else {
             $reply = "404: Snacks not found";
         }
         break;
     case "in":
-        $status = $SnackStatus::In;
-        putenv("SNACKS=$status");
+        putenv("SNACKS=$In");
         $reply = "Fresh snacks delivery!";
         break;
     case "low":
-        $status = $SnackStatus::Low;
-        putenv("SNACKS=$status");
+        putenv("SNACKS=$Low");
         $reply = "Holy cow! Someone shoud call Karie!!";
         break;
     case "out":
-        $status = $SnackStatus::Out;
-        putenv("SNACKS=$status");
+        putenv("SNACKS=$Out");
         $reply = "Argh. No more snacks";
         break;
     default:
