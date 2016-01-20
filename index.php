@@ -57,11 +57,11 @@ if($text == "status")
 {
         if($snacks == $In)
         {
-            $reply = "Yay! No need to panic, snacks are overflowing!";
+            $reply = "Yay! Snacks everywhere!";
         } else if ($snacks == $Low) {
             $reply = "We are running low... let Karie know before it's too late..";
         } else if ($snacks == $Out) {
-            $reply = "We're out... Ship is sinking..";
+            $reply = "We're out... Should I file a bug?";
         } else {
             $reply = "404: Snacks not found";
         }
