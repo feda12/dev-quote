@@ -71,7 +71,7 @@ if($text == "status")
     if($text == "in")
     {
         $status = $In;
-        $reply = "Fresh snacks delivery!";
+        $reply = "Snacks have arrived! Hallelujah!";
     } else if ($text == "low") {
         $status = $Low;
         $reply = "Holy cow! Someone shoud call Karie!!";
