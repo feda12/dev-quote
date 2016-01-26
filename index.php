@@ -36,7 +36,7 @@ if(substr($text, 0, 3) == "add")
     $reply = "Thanks for sharing, mate!";
 } else {
     $randomInt = rand(0, count($quotes));
-    $reply = '*'.$quotes[$randomInt].'*';
+    $reply = '*'.str_replace('\n', '', $quotes[$randomInt]).'*';
 }
 
 echo $reply;
