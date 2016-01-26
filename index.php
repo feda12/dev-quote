@@ -8,10 +8,10 @@ $token = $_POST['token'];
 # Check the token and make sure the request is from our team
 if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slash command configuration page
   $msg = "The token for the slash command doesn't match. Check your script.";
-  print("Token sent=====");
-  print($token);
-  print("Token stored=====");
-  print(getenv("SLACK_TOKEN"));
+  error_log("Token sent=====");
+  error_log($token);
+  error_log("Token stored=====");
+  error_log(getenv("SLACK_TOKEN"));
   die($msg);
   echo $msg;
 }
@@ -22,11 +22,14 @@ if (!file_exists($file)) {
         touch($file);
 }
 $handle = fopen($file, "r+");
-$quotes = [];
+$quotes = ["42"];
 $quotes = file($file);
+
+$reply = "Unsure what's going on here";
 
 if(substr($text, 0, 2) == "add")
 {
+    error_log("Adding a quote");
     array_push($quotes, substr($text, 3));
     $handle = fopen($file, "r+");
     if(flock($handle, LOCK_EX)) {
@@ -37,6 +40,7 @@ if(substr($text, 0, 2) == "add")
     }
     $reply = "Thanks for sharing, mate!";
 } else {
+    error_log("Returning a quote");
     $randomInt = rand(0, count($quotes)-1);
     $reply = $quotes[$randomInt];
 }
