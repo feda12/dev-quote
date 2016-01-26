@@ -20,14 +20,11 @@ if (!file_exists($file)) {
 $handle = fopen($file, "r+");
 $quotes = ["42"];
 $quotes = file($file);
-error_log(count($quotes));
-error_log(implode("\n", $quotes));
 
 $reply = "Unsure what's going on here";
 
 if(substr($text, 0, 3) == "add")
 {
-    error_log("Adding a quote");
     array_push($quotes, substr($text, 4));
     $handle = fopen($file, "r+");
     if(flock($handle, LOCK_EX)) {
@@ -38,9 +35,8 @@ if(substr($text, 0, 3) == "add")
     }
     $reply = "Thanks for sharing, mate!";
 } else {
-    error_log("Returning a quote");
     $randomInt = rand(0, count($quotes));
-    $reply = $quotes[$randomInt];
+    $reply = '*'.$quotes[$randomInt].'*';
 }
 
 echo $reply;
