@@ -8,10 +8,6 @@ $token = $_POST['token'];
 # Check the token and make sure the request is from our team
 if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slash command configuration page
   $msg = "The token for the slash command doesn't match. Check your script.";
-  error_log("Token sent=====");
-  error_log($token);
-  error_log("Token stored=====");
-  error_log(getenv("SLACK_TOKEN"));
   die($msg);
   echo $msg;
 }
@@ -27,6 +23,8 @@ $quotes = file($file);
 
 $reply = "Unsure what's going on here";
 
+error_log($text);
+error_log(substr($text, 0, 2));
 if(substr($text, 0, 2) == "add")
 {
     error_log("Adding a quote");
