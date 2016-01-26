@@ -20,20 +20,20 @@ if (!file_exists($file)) {
 $handle = fopen($file, "r+");
 $quotes = ["42"];
 $quotes = file($file);
+error_log(count($quotes));
+error_log($quotes);
 
 $reply = "Unsure what's going on here";
 
-error_log($text);
-error_log(substr($text, 5));
 if(substr($text, 0, 3) == "add")
 {
     error_log("Adding a quote");
-    array_push($quotes, substr($text, 5));
+    array_push($quotes, substr($text, 4));
     $handle = fopen($file, "r+");
     if(flock($handle, LOCK_EX)) {
         ftruncate($handle, 0);
         rewind($handle);
-        fwrite($handle, $quotes);
+        fwrite($handle, implode("\n", $quotes));
         flock($handle, LOCK_UN);
     }
     $reply = "Thanks for sharing, mate!";
