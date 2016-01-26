@@ -18,20 +18,23 @@ if (!file_exists($file)) {
         touch($file);
 }
 $handle = fopen($file, "r+");
-$quotes = file($file)
+$quotes = [];
+$quotes = file($file);
 
-if(sustr($text, 0, 2) == "add")
+if(substr($text, 0, 2) == "add")
 {
+    array_push($quotes, substr($text, 3));
     $handle = fopen($file, "r+");
     if(flock($handle, LOCK_EX)) {
         ftruncate($handle, 0);
         rewind($handle);
-        fwrite($handle, $status);
+        fwrite($handle, $quotes);
         flock($handle, LOCK_UN);
     }
-    $reply = "Thanks for sharing, mate!"
+    $reply = "Thanks for sharing, mate!";
 } else {
-    $reply = $quotes[rand(0, count($quotes)];
+    $randomInt = rand(0, count($quotes)-1);
+    $reply = $quotes[$randomInt];
 }
 
 echo $reply;
