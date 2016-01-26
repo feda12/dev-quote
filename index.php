@@ -24,11 +24,11 @@ $quotes = file($file);
 $reply = "Unsure what's going on here";
 
 error_log($text);
-error_log(substr($text, 0, 2));
-if(substr($text, 0, 2) == "add")
+error_log(substr($text, 5, 0));
+if(substr($text, 0, 3) == "add")
 {
     error_log("Adding a quote");
-    array_push($quotes, substr($text, 3));
+    array_push($quotes, substr($text, 5));
     $handle = fopen($file, "r+");
     if(flock($handle, LOCK_EX)) {
         ftruncate($handle, 0);
