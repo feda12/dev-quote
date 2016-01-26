@@ -21,7 +21,7 @@ $handle = fopen($file, "r+");
 $quotes = ["42"];
 $quotes = file($file);
 error_log(count($quotes));
-error_log($quotes);
+error_log(implode("\n", $quotes));
 
 $reply = "Unsure what's going on here";
 
