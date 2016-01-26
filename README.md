@@ -20,4 +20,4 @@ Custom slash command to use isitup.org to check if a site is up from within Slac
 
 ## DOWNLOAD 
 
-You can download the completed script and a tutorial for writing your own at https://github.com/mccreath/isitup-for-slack/
+You can download the completed script and a tutorial for writing your own at https://github.com/mccreath/isitup-for-slack/# dev-quote
