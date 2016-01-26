@@ -24,7 +24,7 @@ $quotes = file($file);
 $reply = "Unsure what's going on here";
 
 error_log($text);
-error_log(substr($text, 5, 0));
+error_log(substr($text, 5));
 if(substr($text, 0, 3) == "add")
 {
     error_log("Adding a quote");
@@ -39,7 +39,7 @@ if(substr($text, 0, 3) == "add")
     $reply = "Thanks for sharing, mate!";
 } else {
     error_log("Returning a quote");
-    $randomInt = rand(0, count($quotes)-1);
+    $randomInt = rand(0, count($quotes));
     $reply = $quotes[$randomInt];
 }
 
