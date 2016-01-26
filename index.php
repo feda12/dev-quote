@@ -9,7 +9,7 @@ $token = $_POST['token'];
 if($token != getenv("SLACK_TOKEN")){ #replace this with the token from your slash command configuration page
   $msg = "The token for the slash command doesn't match. Check your script.";
   print($token);
-  print(getenv("SLACK_TOKEN"))
+  print(getenv("SLACK_TOKEN"));
   die($msg);
   echo $msg;
 }
